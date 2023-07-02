@@ -9,7 +9,7 @@ npm i react-storage
 ## Usage
 
 ```ts
-import { hello } from 'react-storage';
+import { hello } from '@guoyunhe/react-storage';
 
 hello('world');
 ```

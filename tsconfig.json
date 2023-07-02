@@ -1,14 +1,9 @@
 {
-  "extends": [
-    "@tsconfig/vite-react/tsconfig.json",
-    "@tsconfig/strictest/tsconfig.json"
-  ],
+  "extends": ["@tsconfig/vite-react/tsconfig.json", "@tsconfig/strictest/tsconfig.json"],
   "compilerOptions": {
     "checkJs": false,
     "paths": {
-      "react-storage": [
-        "./src"
-      ]
+      "@guoyunhe/react-storage": ["./src"]
     },
     "types": [
       "node",
