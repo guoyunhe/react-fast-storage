@@ -8,7 +8,14 @@ npm i @guoyunhe/react-storage
 
 ## Usage
 
-By default, `useStorage()` store serialized JSON data into `localStorage`.
+`useStorage()` takes three parameters:
+
+- `key`: localStorage/sessionStorage key
+- `defaultValue`: default value when there is no existing data from storage
+- `options`: options for the hook, optional
+  - `storage`: localStorage (default) or sessionStorage
+  - `serializer`: function to serialize data, by default `JSON.stringify`
+  - `serializer`: function to parse data, by default `JSON.parse`
 
 ```jsx
 import { useStorage } from '@guoyunhe/react-storage';
