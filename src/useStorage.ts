@@ -1,5 +1,5 @@
-import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
-import { StorageConfig } from '.';
+import { Dispatch, SetStateAction, useContext, useEffect, useRef, useState } from 'react';
+import { StorageConfig, StorageContext } from './StorageContext';
 
 export type UseStorageOptions = Partial<StorageConfig>;
 
@@ -8,11 +8,11 @@ export function useStorage<T>(
   defaultValue: T,
   options: UseStorageOptions = {}
 ): [T, Dispatch<SetStateAction<T>>] {
-  const {
-    storage = window.localStorage,
-    serializer = JSON.stringify,
-    parser = JSON.parse,
-  } = options;
+  const config = useContext(StorageContext);
+
+  const storage = options.storage || config.storage;
+  const serializer = options.serializer || config.serializer;
+  const parser = options.parser || config.parser;
 
   const rawRef = useRef<string | null>(null);
   const serializerRef = useRef(serializer);
