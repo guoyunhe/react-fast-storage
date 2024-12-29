@@ -5,7 +5,7 @@
       "@guoyunhe/react-storage": ["./src"]
     },
     "types": ["node", "rive/globals"],
-    "target": "es2015",
+    "target": "es2017",
     "lib": ["esnext", "dom", "dom.iterable"],
     "allowJs": true,
     "skipLibCheck": true,
