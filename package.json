@@ -1,9 +1,13 @@
 {
   "name": "@guoyunhe/react-storage",
   "version": "1.1.0",
-  "description": "",
+  "description": "Better useLocalStorage() and useSessionStorage() hooks",
   "keywords": [
-    "react"
+    "react",
+    "storage",
+    "local-storage",
+    "session-storage",
+    "state"
   ],
   "homepage": "https://github.com/guoyunhe/react-storage#readme",
   "bugs": {
@@ -14,14 +18,14 @@
     "url": "git+https://github.com/guoyunhe/react-storage.git"
   },
   "funding": "https://github.com/sponsors/guoyunhe",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "author": {
     "name": "Guo Yunhe",
     "email": "i@guoyunhe.me"
   },
+  "type": "module",
   "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "typings": "dist/index.d.ts",
+  "types": "dist/index.d.ts",
   "files": [
     "dist",
     "CHANGELOG.md",
@@ -29,42 +33,40 @@
     "README.md"
   ],
   "scripts": {
-    "build": "react-lib-scripts build",
-    "deploy": "gh-pages -d build",
-    "format": "react-lib-scripts format",
-    "lint": "react-lib-scripts lint",
-    "start": "react-lib-scripts start",
-    "test": "react-lib-scripts test",
-    "watch": "react-lib-scripts watch"
+    "build": "rive build",
+    "build:watch": "rive build --watch",
+    "lint": "rive lint",
+    "lint:fix": "rive lint --fix",
+    "start": "rive start",
+    "test": "rive test",
+    "test:ui": "rive test --ui",
+    "test:watch": "rive test --watch"
   },
-  "prettier": {
-    "printWidth": 100,
-    "singleQuote": true
-  },
-  "eslintConfig": {
-    "extends": "@guoyunhe/react-lib-scripts"
-  },
-  "jest": {
-    "preset": "@guoyunhe/react-lib-scripts"
+  "prettier": "prettier-config-rive",
+  "stylelint": {
+    "extends": "stylelint-config-rive"
   },
   "devDependencies": {
-    "@guoyunhe/react-lib-scripts": "^1.4.0",
-    "@testing-library/dom": "^9.3.1",
-    "@testing-library/react": "^14.0.0",
-    "@testing-library/user-event": "^14.5.1",
-    "@tsconfig/strictest": "^2.0.2",
-    "@tsconfig/vite-react": "^2.0.1",
-    "@types/jest": "^29.5.5",
-    "@types/node": "^20.6.2",
-    "@types/react": "^18.2.21",
-    "@types/react-dom": "^18.2.7",
-    "gh-pages": "^5.0.0",
-    "react": "^18.2.0",
-    "react-doc-ui": "^1.0.1",
-    "react-dom": "^18.2.0",
-    "typescript": "^5.2.2"
+    "@mdx-js/react": "^3.1.0",
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/react": "^16.1.0",
+    "@testing-library/user-event": "^14.5.2",
+    "@types/node": "^20.17.10",
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "react": "^18.3.1",
+    "react-doc-ui": "^2.3.0",
+    "react-dom": "^18.3.1",
+    "rive": "^3.0.0",
+    "typescript": "^5.7.2"
   },
   "peerDependencies": {
-    "react": "^16.8.0 || ^17.0.0 || ^18.0.0"
+    "react": ">=16.8.0"
+  },
+  "rive": {
+    "template": "react",
+    "doc": {
+      "basename": "/react-storage/"
+    }
   }
 }
