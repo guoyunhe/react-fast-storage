@@ -6,7 +6,7 @@ export type UseStorageOptions = Partial<StorageConfig>;
 export function useStorage<T>(
   key: string,
   defaultValue: T,
-  options: UseStorageOptions = {}
+  options: UseStorageOptions = {},
 ): [T, Dispatch<SetStateAction<T>>] {
   const config = useContext(StorageContext);
 
@@ -72,7 +72,7 @@ export function useStorage<T>(
           key,
           newValue,
           oldValue,
-        })
+        }),
       );
     }
   }, [key, state, storage]);

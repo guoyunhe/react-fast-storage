@@ -1,3 +1,3 @@
-import rive from 'eslint-config-rive/react';
+import rive from 'eslint-config-rive';
 
 export default [rive];
