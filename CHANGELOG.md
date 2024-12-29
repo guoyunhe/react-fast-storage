@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.0.0 - 2024-12-29
+
+- Changed build target from `es2015` to `es2017`
+
 ## 1.1.0 - 2023-09-16
 
 - Added `useLocalStorage()` hook, same as `useStorage(key, defaultValue, { storage: localStorage })`
