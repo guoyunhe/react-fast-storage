@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import { StorageConfig } from './StorageConfig';
-import { StorageContext, storageContextDefaultValue } from './StorageContext';
+import { StorageContext } from './StorageContext';
 
 export interface StorageProviderProps extends Partial<StorageConfig> {
   children?: ReactNode;
@@ -8,10 +8,13 @@ export interface StorageProviderProps extends Partial<StorageConfig> {
 
 export function StorageProvider({
   children,
-  serializer = storageContextDefaultValue.serializer,
-  parser = storageContextDefaultValue.parser,
+  serializer = JSON.stringify,
+  parser = JSON.parse,
+  prefix = '',
 }: StorageProviderProps) {
   return (
-    <StorageContext.Provider value={{ serializer, parser }}>{children}</StorageContext.Provider>
+    <StorageContext.Provider value={{ serializer, parser, prefix }}>
+      {children}
+    </StorageContext.Provider>
   );
 }

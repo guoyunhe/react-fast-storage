@@ -12,6 +12,9 @@ export function useStorage<T>(
 
   const serializer = options?.serializer || config.serializer;
   const parser = options?.parser || config.parser;
+  const prefix = options?.prefix ?? config.prefix;
+
+  const fullKey = prefix + key;
 
   const rawRef = useRef<string | null>(null);
   const serializerRef = useRef(serializer);
@@ -23,7 +26,7 @@ export function useStorage<T>(
 
   const [state, setState] = useState<T>(() => {
     // Use function for initialState can reduce I/O and increase performance.
-    rawRef.current = storage.getItem(key);
+    rawRef.current = storage.getItem(fullKey);
     if (rawRef.current) {
       try {
         return parser(rawRef.current) as T;
@@ -36,14 +39,14 @@ export function useStorage<T>(
 
   // Read storage and listen storage events
   useEffect(() => {
-    const newValue = storage.getItem(key);
+    const newValue = storage.getItem(fullKey);
     if (rawRef.current !== newValue) {
       rawRef.current = newValue;
       setState(newValue ? parserRef.current(newValue) : defaultValueRef.current);
     }
 
     const handleStorage = (e: StorageEvent) => {
-      if (e.key !== key || e.storageArea !== storage) return;
+      if (e.key !== fullKey || e.storageArea !== storage) return;
 
       if (e.newValue !== rawRef.current) {
         rawRef.current = e.newValue;
@@ -53,7 +56,7 @@ export function useStorage<T>(
 
     window.addEventListener('storage', handleStorage);
     return () => window.removeEventListener('storage', handleStorage);
-  }, [key, storage]);
+  }, [fullKey, storage]);
 
   // Write storage and trigger storage events
   useEffect(() => {
@@ -61,20 +64,20 @@ export function useStorage<T>(
     if (newValue !== rawRef.current) {
       const oldValue = rawRef.current;
       rawRef.current = newValue;
-      window.localStorage.setItem(key, newValue);
+      window.localStorage.setItem(fullKey, newValue);
       // Browser ONLY dispatch storage events to other tabs, NOT current tab.
       // We need to manually dispatch storage event for current tab when state changing.
       window.dispatchEvent(
         new StorageEvent('storage', {
           storageArea: storage,
           url: window.location.href,
-          key,
+          key: fullKey,
           newValue,
           oldValue,
         }),
       );
     }
-  }, [key, state, storage]);
+  }, [fullKey, state, storage]);
 
   return [state, setState];
 }
