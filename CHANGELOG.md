@@ -2,9 +2,10 @@
 
 ## 2.0.0 - 2024-12-29
 
-- **BREAKING CHANGE**: Changed build target from `es2015` to `es2017`
-- **BREAKING CHANGE**: Removed `useStorage` export in favor of `useLocalStorage` and `useSessionStorage`
+- **BREAKING CHANGE**: Removed `useStorage` export
+- **BREAKING CHANGE**: Removed `StorageContext` export
 - **BREAKING CHANGE**: Removed `storage` prop from `StorageProvider`
+- **BREAKING CHANGE**: Changed build target from `es2015` to `es2017`
 - Added `prefix` prop to `StorageProvider`
 
 ## 1.1.0 - 2023-09-16
