@@ -1,18 +1,17 @@
 import { Dispatch, SetStateAction, useContext, useEffect, useRef, useState } from 'react';
-import { StorageConfig, StorageContext } from './StorageContext';
-
-export type UseStorageOptions = Partial<StorageConfig>;
+import { StorageConfig } from './StorageConfig';
+import { StorageContext } from './StorageContext';
 
 export function useStorage<T>(
+  storage: Storage,
   key: string,
   defaultValue: T,
-  options: UseStorageOptions = {},
+  options?: Partial<StorageConfig>,
 ): [T, Dispatch<SetStateAction<T>>] {
   const config = useContext(StorageContext);
 
-  const storage = options.storage || config.storage;
-  const serializer = options.serializer || config.serializer;
-  const parser = options.parser || config.parser;
+  const serializer = options?.serializer || config.serializer;
+  const parser = options?.parser || config.parser;
 
   const rawRef = useRef<string | null>(null);
   const serializerRef = useRef(serializer);

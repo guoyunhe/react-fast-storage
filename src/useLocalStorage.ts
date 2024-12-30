@@ -1,5 +1,6 @@
-import { UseStorageOptions, useStorage } from './useStorage';
+import { StorageConfig } from './StorageConfig';
+import { useStorage } from './useStorage';
 
-export function useLocalStorage<T>(key: string, defaultValue: T, options: UseStorageOptions = {}) {
-  return useStorage(key, defaultValue, { ...options, storage: window.localStorage });
+export function useLocalStorage<T>(key: string, defaultValue: T, options?: Partial<StorageConfig>) {
+  return useStorage(localStorage, key, defaultValue, options);
 }

@@ -1,63 +1,149 @@
 # @guoyunhe/react-storage
 
-## Install
+![npm](https://img.shields.io/npm/v/@guoyunhe/react-storage)
+![downloads](https://img.shields.io/npm/dw/@guoyunhe/react-storage)
+![minzipped size](https://img.shields.io/bundlephobia/minzip/@guoyunhe/react-storage)
+
+Better useLocalStorage() and useSessionStorage() hooks.
+
+## Installation
 
 ```bash
-npm i @guoyunhe/react-storage
+npm install --save @guoyunhe/react-storage
 ```
 
-## Usage
+## Examples
 
-`useStorage()` takes three parameters:
+### Simple
 
-- `key`: localStorage/sessionStorage key
-- `defaultValue`: default value when there is no existing data from storage
-- `options`: options for the hook, optional
-  - `storage`: localStorage (default) or sessionStorage
-  - `serializer`: function to serialize data, by default `JSON.stringify`
-  - `serializer`: function to parse data, by default `JSON.parse`
+By default, useLocalStorage support JSON data.
 
-```jsx
-import { useStorage } from '@guoyunhe/react-storage';
+```js
+import { useLocalStorage, useSessionStorage } from '@guoyunhe/react-storage';
+
+interface Settings {
+  color: string;
+  size: number;
+}
 
 function App() {
-  const [settings, setSettings] = useStorage('token', { color: 'red', size: 20 });
-
-  return <div>...</div>;
+  const [settings, setSettings] = useLocalStorage<Settings>('settings', { color: 'red', size: 20 });
+  const [draft, setDraft] = useSessionStorage<string>('draft', '');
 }
 ```
 
-You can use options to change storage, serializer and parser.
+### Customize serializer and parser
 
-```jsx
-import { useStorage } from '@guoyunhe/react-storage';
+You can use options to customize serializer and parser.
+
+```js
+import { useLocalStorage } from '@guoyunhe/react-storage';
 
 function App() {
-  const [date, setDate] = useStorage('token', new Date(), {
-    storage: window.sessionStorage,
+  const [date, setDate] = useLocalStorage('date', new Date(), {
     serializer: (date) => date.toISOString(),
     parser: (str) => new Date(str),
   });
-
-  return <div>...</div>;
 }
 ```
 
-You can also set global configuration with context:
+### Storage key prefix
 
-```jsx
-import { useStorage, StorageProvider } from '@guoyunhe/react-storage';
+LocalStorage is scoped by domain. However, you may have multiple React apps under same domain and
+don't want to share data between. In this case, you can specify a global `prefix` with
+`<StorageProvider/>`.
+
+```js
+import { useLocalStorage, StorageProvider } from '@guoyunhe/react-storage';
 
 function App() {
   return (
-    <StorageProvider storage={sessionStorage} serializer={ ... } parser={ ... }>
+    <StorageProvider prefix="dashboard_">
       <Page />
     </StorageProvider>
   );
 }
 
 function Page() {
-  const [settings, setSettings] = useStorage('token', { color: 'red', size: 20 });
-  return <div>...</div>;
+  // The actual storage key will be `dashboard_dark_mode`
+  const [darkMode, setDarkMode] = useLocalStorage('dark_mode', false);
 }
 ```
+
+## API
+
+### useLocalStorage(key, defaultValue, options)
+
+`useLocalStorage()` can not only persist data, but also share state between browser tabs!
+
+Remember that localStorage has a 5MB size limit. Do NOT write too many data into it.
+
+#### key
+
+Type: `string`
+
+Storage key. If [`prefix`](#prefix) is defined, actual storage key is `prefix` + `key`.
+
+#### defaultValue
+
+Type: `T`
+
+Default value to use when storage doesn't exist or can not be parsed.
+
+#### options.serializer
+
+Type: `(value: T) => string`
+
+Default: `JSON.stringify`
+
+Serialize value to string.
+
+#### options.parser
+
+Type: `(data: string) => T`
+
+Default: `JSON.parse`
+
+Parse string to value.
+
+#### options.prefix
+
+Type: `string`
+
+In case you defined global `prefix` in `<StorageProvider/>`, but need to override it in some places.
+
+### useSessionStorage()
+
+API is the same as `useLocalStorage()`, but store data in `sessionStorage`, which will be clear after
+closing browser tabs. It is useful when you want an easy way to:
+
+- Share state between different React components or apps in the same browser tab
+- Remember state after refreshing browser tab
+
+Remember that sessionStorage also has a 5MB size limit. Do NOT write too many data into it.
+
+### StorageProvider
+
+Define global configuration for hooks.
+
+#### prefix
+
+Type: `string`
+
+If `prefix` is defined, actual storage key is `prefix` + `key`.
+
+#### serializer
+
+Type: `(value: T) => string`
+
+Default: `JSON.stringify`
+
+Serialize value to string.
+
+#### parser
+
+Type: `(data: string) => T`
+
+Default: `JSON.parse`
+
+Parse string to value.

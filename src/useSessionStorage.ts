@@ -1,9 +1,10 @@
-import { UseStorageOptions, useStorage } from './useStorage';
+import { StorageConfig } from './StorageConfig';
+import { useStorage } from './useStorage';
 
 export function useSessionStorage<T>(
   key: string,
   defaultValue: T,
-  options: UseStorageOptions = {},
+  options?: Partial<StorageConfig>,
 ) {
-  return useStorage(key, defaultValue, { ...options, storage: window.sessionStorage });
+  return useStorage(sessionStorage, key, defaultValue, options);
 }
