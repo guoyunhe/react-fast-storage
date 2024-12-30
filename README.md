@@ -70,6 +70,33 @@ function Page() {
 }
 ```
 
+### Sync state across components and browser tabs
+
+Communicating through `stroage` event, states can sync between different components and browser tabs,
+in real-time, without extra effort.
+
+```jsx
+import { useLocalStorage, StorageProvider } from '@guoyunhe/react-storage';
+
+function Page() {
+  const [count, setCount] = useLocalStorage('count', 0);
+  return (
+    <div style={{ background: '#8888', padding: 4 }}>
+      <button onClick={() => setCount((prev) => prev - 1)}>-</button>
+      <span style={{ paddingInline: 8 }}>{count}</span>
+      <button onClick={() => setCount((prev) => prev + 1)}>+</button>
+    </div>
+  );
+}
+
+render(
+  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'start', gap: 8 }}>
+    <Page />
+    <Page />
+  </div>,
+);
+```
+
 ## API
 
 ### useLocalStorage(key, defaultValue, options)
