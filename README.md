@@ -147,3 +147,20 @@ Type: `(data: string) => T`
 Default: `JSON.parse`
 
 Parse string to value.
+
+## Comparison
+
+| Package                   | TS  | ESM | Prefix | Sync across tabs | Sync across components | Bundle size                                                                        |
+| ------------------------- | --- | --- | ------ | ---------------- | ---------------------- | ---------------------------------------------------------------------------------- |
+| @guoyunhe/react-storage   | ✅  | ✅  | ✅     | ✅               | ✅                     | ![Bundle size](https://img.shields.io/bundlephobia/minzip/@guoyunhe/react-storage) |
+| [use-local-storage-state] | ✅  | ✅  | ❌     | ✅               | ❌                     | ![Bundle size](https://img.shields.io/bundlephobia/minzip/use-local-storage-state) |
+| [use-local-storage]       | ✅  | ❌  | ❌     | ✅               | ✅                     | ![Bundle size](https://img.shields.io/bundlephobia/minzip/use-local-storage)       |
+| [react-storage-hooks]     | ✅  | ❌  | ❌     | ✅               | ❌                     | ![Bundle size](https://img.shields.io/bundlephobia/minzip/react-storage-hooks)     |
+| [react-use]               | ✅  | ✅  | ❌     | ❌               | ❌                     | ![Bundle size](https://img.shields.io/bundlephobia/minzip/react-use)               |
+| [ahooks]                  | ✅  | ✅  | ❌     | ❌               | ❌                     | ![Bundle size](https://img.shields.io/bundlephobia/minzip/ahooks)                  |
+
+[react-storage-hooks]: https://www.npmjs.com/package/react-storage-hooks
+[use-local-storage-state]: https://www.npmjs.com/package/use-local-storage-state
+[use-local-storage]: https://www.npmjs.com/package/use-local-storage
+[react-use]: https://www.npmjs.com/package/react-use
+[ahooks]: https://www.npmjs.com/package/ahooks
