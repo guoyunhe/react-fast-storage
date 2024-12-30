@@ -1,6 +1,6 @@
 # Changelog
 
-## 2.0.0 - 2024-12-29
+## 2.0.0 - 2024-12-30
 
 - **BREAKING CHANGE**: Removed `useStorage` export
 - **BREAKING CHANGE**: Removed `StorageContext` export
