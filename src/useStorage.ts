@@ -30,7 +30,7 @@ export function useStorage<T>(
     if (rawRef.current) {
       try {
         return parser(rawRef.current) as T;
-      } catch (e) {
+      } catch {
         return defaultValue;
       }
     }
