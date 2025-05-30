@@ -64,7 +64,14 @@ export function useStorage<T>(
     if (newValue !== rawRef.current) {
       const oldValue = rawRef.current;
       rawRef.current = newValue;
-      window.localStorage.setItem(fullKey, newValue);
+      try {
+        // Writing data may fail when storage is full or prevented by browser
+        // In this case, useStorage behaves like useState without persisting any data
+        storage.setItem(fullKey, newValue);
+      } catch (e) {
+        console.error('[react-fast-fetch]: failed to write data into storage');
+        console.error(e);
+      }
       // Browser ONLY dispatch storage events to other tabs, NOT current tab.
       // We need to manually dispatch storage event for current tab when state changing.
       window.dispatchEvent(

@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.0.1 - 2025-05-31
+
+- Fixed crash on storage writting errors
+
 ## 2.0.0 - 2024-12-30
 
 - **BREAKING CHANGE**: Removed `useStorage` export
