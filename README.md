@@ -1,15 +1,15 @@
-# @guoyunhe/react-storage
+# react-fast-storage
 
-![npm](https://img.shields.io/npm/v/@guoyunhe/react-storage)
-![downloads](https://img.shields.io/npm/dw/@guoyunhe/react-storage)
-![minzipped size](https://img.shields.io/bundlephobia/minzip/@guoyunhe/react-storage)
+![npm](https://img.shields.io/npm/v/react-fast-storage)
+![downloads](https://img.shields.io/npm/dw/react-fast-storage)
+![minzipped size](https://img.shields.io/bundlephobia/minzip/react-fast-storage)
 
 Better useLocalStorage() and useSessionStorage() hooks.
 
 ## Installation
 
 ```bash
-npm install --save @guoyunhe/react-storage
+npm install --save react-fast-storage
 ```
 
 ## Examples
@@ -19,7 +19,7 @@ npm install --save @guoyunhe/react-storage
 By default, useLocalStorage support JSON data.
 
 ```js
-import { useLocalStorage, useSessionStorage } from '@guoyunhe/react-storage';
+import { useLocalStorage, useSessionStorage } from 'react-fast-storage';
 
 interface Settings {
   color: string;
@@ -37,7 +37,7 @@ function App() {
 You can use options to customize serializer and parser.
 
 ```js
-import { useLocalStorage } from '@guoyunhe/react-storage';
+import { useLocalStorage } from 'react-fast-storage';
 
 function App() {
   const [date, setDate] = useLocalStorage('date', new Date(), {
@@ -54,7 +54,7 @@ don't want to share data between. In this case, you can specify a global `prefix
 `<StorageProvider/>`.
 
 ```js
-import { useLocalStorage, StorageProvider } from '@guoyunhe/react-storage';
+import { useLocalStorage, StorageProvider } from 'react-fast-storage';
 
 function App() {
   return (
@@ -76,7 +76,7 @@ Communicating through `stroage` event, states can sync between different compone
 in real-time, without extra effort.
 
 ```jsx
-import { useLocalStorage, StorageProvider } from '@guoyunhe/react-storage';
+import { useLocalStorage, StorageProvider } from 'react-fast-storage';
 
 function Page() {
   const [count, setCount] = useLocalStorage('count', 0);
@@ -177,16 +177,16 @@ Parse string to value.
 
 ## Comparison
 
-| Package                   | TS  | ESM | Prefix | Sync across tabs | Sync across components | Bundle size                                                                        |
-| ------------------------- | --- | --- | ------ | ---------------- | ---------------------- | ---------------------------------------------------------------------------------- |
-| @guoyunhe/react-storage   | ✅  | ✅  | ✅     | ✅               | ✅                     | ![Bundle size](https://img.shields.io/bundlephobia/minzip/@guoyunhe/react-storage) |
-| [use-local-storage-state] | ✅  | ✅  | ❌     | ✅               | ❌                     | ![Bundle size](https://img.shields.io/bundlephobia/minzip/use-local-storage-state) |
-| [use-local-storage]       | ✅  | ❌  | ❌     | ✅               | ✅                     | ![Bundle size](https://img.shields.io/bundlephobia/minzip/use-local-storage)       |
-| [react-storage-hooks]     | ✅  | ❌  | ❌     | ✅               | ❌                     | ![Bundle size](https://img.shields.io/bundlephobia/minzip/react-storage-hooks)     |
-| [react-use]               | ✅  | ✅  | ❌     | ❌               | ❌                     | ![Bundle size](https://img.shields.io/bundlephobia/minzip/react-use)               |
-| [ahooks]                  | ✅  | ✅  | ❌     | ❌               | ❌                     | ![Bundle size](https://img.shields.io/bundlephobia/minzip/ahooks)                  |
+| Package                    | TS  | ESM | Prefix | Sync across tabs | Sync across components | Bundle size                                                                         |
+| -------------------------- | --- | --- | ------ | ---------------- | ---------------------- | ----------------------------------------------------------------------------------- |
+| react-fast-storage         | ✅  | ✅  | ✅     | ✅               | ✅                     | ![Bundle size](https://img.shields.io/bundlephobia/minzip/react-fast-storage)       |
+| [use-local-storage-state]  | ✅  | ✅  | ❌     | ✅               | ❌                     | ![Bundle size](https://img.shields.io/bundlephobia/minzip/use-local-storage-state)  |
+| [use-local-storage]        | ✅  | ❌  | ❌     | ✅               | ✅                     | ![Bundle size](https://img.shields.io/bundlephobia/minzip/use-local-storage)        |
+| [react-fast-storage-hooks] | ✅  | ❌  | ❌     | ✅               | ❌                     | ![Bundle size](https://img.shields.io/bundlephobia/minzip/react-fast-storage-hooks) |
+| [react-use]                | ✅  | ✅  | ❌     | ❌               | ❌                     | ![Bundle size](https://img.shields.io/bundlephobia/minzip/react-use)                |
+| [ahooks]                   | ✅  | ✅  | ❌     | ❌               | ❌                     | ![Bundle size](https://img.shields.io/bundlephobia/minzip/ahooks)                   |
 
-[react-storage-hooks]: https://www.npmjs.com/package/react-storage-hooks
+[react-fast-storage-hooks]: https://www.npmjs.com/package/react-fast-storage-hooks
 [use-local-storage-state]: https://www.npmjs.com/package/use-local-storage-state
 [use-local-storage]: https://www.npmjs.com/package/use-local-storage
 [react-use]: https://www.npmjs.com/package/react-use

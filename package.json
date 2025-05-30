@@ -1,5 +1,5 @@
 {
-  "name": "@guoyunhe/react-storage",
+  "name": "react-fast-storage",
   "version": "2.0.0",
   "description": "Better useLocalStorage() and useSessionStorage() hooks",
   "keywords": [
@@ -9,13 +9,13 @@
     "session-storage",
     "state"
   ],
-  "homepage": "https://github.com/guoyunhe/react-storage#readme",
+  "homepage": "https://github.com/guoyunhe/react-fast-storage#readme",
   "bugs": {
-    "url": "https://github.com/guoyunhe/react-storage/issues"
+    "url": "https://github.com/guoyunhe/react-fast-storage/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/guoyunhe/react-storage.git"
+    "url": "git+https://github.com/guoyunhe/react-fast-storage.git"
   },
   "funding": "https://github.com/sponsors/guoyunhe",
   "license": "MIT",
@@ -66,7 +66,7 @@
   "rive": {
     "template": "react",
     "doc": {
-      "basename": "/react-storage/"
+      "basename": "/react-fast-storage/"
     }
   }
 }
