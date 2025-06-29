@@ -2,7 +2,7 @@
   "compilerOptions": {
     "checkJs": false,
     "paths": {
-      "react-fast-storage": ["./src"]
+      "@guoyunhe/react-storage": ["./src"]
     },
     "types": ["node", "rive/globals", "vitest/globals"],
     "target": "es2020",
